@@ -7,6 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class RoomEntity {
 private Long id;
 
 @Column(name = "room_salary",nullable = false)
-private int salary;
+private BigDecimal price;
 
 @Column(name = "floor_number",nullable = false)
 private byte floorNumber;
@@ -54,8 +55,8 @@ private LocalDateTime createdAt= LocalDateTime.now();
 private LocalDateTime updatedAt=LocalDateTime.now();
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(name = "room_images",
-            joinColumns = @JoinColumn(name = "room_id", referencedColumnName = "r_id"),
+    @JoinTable(name = "roomEntity",
+            joinColumns = @JoinColumn(name = "r_id", referencedColumnName = "r_id"),
             inverseJoinColumns = @JoinColumn(name = "image_id", referencedColumnName = "i_id"))
     private List<ImageEntity> images;
 

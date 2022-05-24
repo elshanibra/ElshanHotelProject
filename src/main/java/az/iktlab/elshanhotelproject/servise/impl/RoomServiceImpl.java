@@ -19,7 +19,7 @@ public class RoomServiceImpl implements RoomService {
     @Override
     public void add(RoomDto dto) {
         RoomEntity roomEntity = new RoomEntity();
-        roomEntity.setSalary(dto.getSalary());
+        roomEntity.setPrice(dto.getPrice());
         roomEntity.setFloorNumber(dto.getFloorNumber());
         roomEntity.setHumanCapacity(dto.getHumanCapacity());
         roomEntity.setRoomType(dto.getRoomType());
@@ -35,7 +35,7 @@ public class RoomServiceImpl implements RoomService {
         RoomEntity roomEntity = roomRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Id not founded"));
         RoomDto dto = new RoomDto();
-        dto.setSalary(roomEntity.getSalary());
+        dto.setPrice(roomEntity.getPrice());
         dto.setFloorNumber(roomEntity.getFloorNumber());
         dto.setHumanCapacity(roomEntity.getHumanCapacity());
         dto.setRoomType(roomEntity.getRoomType());
@@ -50,7 +50,7 @@ public class RoomServiceImpl implements RoomService {
         List<RoomEntity> rooms = (List<RoomEntity>) roomRepository.findAll();
 
         return rooms.stream()
-                .map(roomEntity -> new RoomDto(roomEntity.getSalary(), roomEntity.getFloorNumber(), roomEntity.getHumanCapacity(),
+                .map(roomEntity -> new RoomDto(roomEntity.getPrice(), roomEntity.getFloorNumber(), roomEntity.getHumanCapacity(),
                         roomEntity.getRoomStatus(), roomEntity.getRoomType(), roomEntity.getEnterRoomDirectParking()))
                 .collect(Collectors.toList());
 
@@ -60,7 +60,7 @@ public class RoomServiceImpl implements RoomService {
     public void update(RoomDto dto, Long id) {
         RoomEntity roomEntity = roomRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Id not founded"));
-        roomEntity.setSalary(dto.getSalary());
+        roomEntity.setPrice(dto.getPrice());
         roomEntity.setFloorNumber(dto.getFloorNumber());
         roomEntity.setHumanCapacity(dto.getHumanCapacity());
         roomEntity.setRoomType(dto.getRoomType());

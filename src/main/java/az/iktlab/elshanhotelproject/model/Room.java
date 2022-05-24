@@ -5,13 +5,15 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Room {
 
     private Long id;
-    private int salary;
+    private BigDecimal price;
     private byte floorNumber;
     private byte humanCapacity;
     private RoomStatus roomStatus;
